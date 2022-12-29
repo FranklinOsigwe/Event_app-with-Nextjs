@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css';
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
  
 export default function Home({data}) {
     return (
@@ -13,21 +14,31 @@ export default function Home({data}) {
             
             <header>
                 <nav>
+                    <Link href="/" passHref>
+                        <a>Home</a>
+                    </Link>
+
+                    <Link href="/events/london" passHref>
+                        <a>Events</a>
+                    </Link>
+                     
+                    <Link href="/about-us" passHref>
+                    <a>About Us</a>
+                    </Link>
                 <img />
-                <a href="/">Home</a>
-                <a href="/events/london">Events</a>
-                <a href="/about-us">About Us</a>
                 </nav>
             </header>
-
+/** */
             <main className={styles.main}>
                 {data.map((ev) => (
-                    <a key={ev.id} href={`/events/${ev.id}`}>
+                    <Link key={ev.id} href={`/events/${ev.id}`} passHref>
+                    <a key={ev.id}>
                         <Image width={300} height={'300'} src={ev.image} alt={ev.title}  />
                         
                         <h2>{ev.title}</h2> <p>{ev.description}</p>
                         
                     </a>
+                    </Link>
                 ))}
 
                 <a href="events/london">
